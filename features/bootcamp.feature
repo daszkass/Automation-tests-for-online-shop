@@ -7,10 +7,8 @@ Feature: The Newegg main page
     When I enter "Windows" in the search bar 
     And I click the search button
     Then At least 1 item should appear
-    * Delete browser cookies
 
   Scenario: As a user, I can use shop logo button to open main page
     When I open "Today's Best Deals" tab
     And I click on the shop logo 
     Then Main page should open
-    * Delete browser cookies 

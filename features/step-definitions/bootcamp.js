@@ -2,7 +2,6 @@ const { Given, When, Then } = require('@wdio/cucumber-framework');
 
 Given("I am on the home page", async () => {
     await browser.url('/');
-    await browser.pause(3000);
 });
 
 When("I enter {string} in the search bar", async (searchWord) => {
@@ -12,7 +11,7 @@ When("I enter {string} in the search bar", async (searchWord) => {
 When("I click the search button", async () => {
     try {
         await $('.header2021-search-button button').click();
-    } catch (error) {
+    } catch {
         await $('#modal-Website .close').click();
         await $('.header2021-search-button button').click();
     }
@@ -23,15 +22,11 @@ Then("At least {int} item should appear", async (amount) => {
     await expect(items).toBeElementsArrayOfSize({ gte:amount });
 });
 
-Then("Delete browser cookies", async () => {
-    browser.deleteCookies();
-});
-
 When("I open {string} tab", async (tabName) => {
     const tab = await $('.header2021').$(`.font-s=${tabName}`);
     try {
         await tab.click();
-    } catch (error) {
+    } catch {
         await $('#modal-Website .close').click();
         await tab.click();
     }
