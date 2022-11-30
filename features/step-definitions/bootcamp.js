@@ -4,17 +4,21 @@ Given("I am on the home page", async () => {
     await browser.url('/');
 });
 
+Given("I close banner if it appears", async () => {
+    const modalWebsite = await $('#modal-Website');
+    const closeBanner = await $('#modal-Website .close');
+    if (await modalWebsite.isDisplayed()) {
+        await closeBanner.click();
+    }
+});
+
 When("I enter {string} in the search bar", async (searchWord) => {
     await $('.header2021-search-inner input[type="search"]').setValue(searchWord);
 });
 
 When("I click the search button", async () => {
-    try {
-        await $('.header2021-search-button button').click();
-    } catch {
-        await $('#modal-Website .close').click();
-        await $('.header2021-search-button button').click();
-    }
+    const searchButton = await $('.header2021-search-button button');
+    await searchButton.click();
 });
 
 Then("At least {int} item should appear", async (amount) => {
@@ -24,12 +28,7 @@ Then("At least {int} item should appear", async (amount) => {
 
 When("I open {string} tab", async (tabName) => {
     const tab = await $('.header2021').$(`.font-s=${tabName}`);
-    try {
-        await tab.click();
-    } catch {
-        await $('#modal-Website .close').click();
-        await tab.click();
-    }
+    await tab.click();
 });
 
 When("I click on the shop logo", async () => {
