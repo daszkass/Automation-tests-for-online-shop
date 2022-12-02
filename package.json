@@ -6,6 +6,9 @@
   "author": "Daria Sobolewska",
   "license": "MIT",
   "devDependencies": {
+    "@babel/core": "^7.20.5",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/register": "^7.18.9",
     "@wdio/allure-reporter": "^7.26.0",
     "@wdio/cli": "^7.27.0",
     "@wdio/cucumber-framework": "^7.27.0",

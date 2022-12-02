@@ -1,17 +1,18 @@
-const { Given, When, Then } = require('@wdio/cucumber-framework');
+import { Given, When, Then } from '@wdio/cucumber-framework';
+import { getMessage, getAllItemsFromCart, getFirstItem, getItemQty, getButton } from '../helpers/selectors';
 
 When("I click first item, which appears", async () => {
-    const item = await $('.page-section-inner .item-img');
+    const item = await getFirstItem(); 
     await item.click();
 }); 
 
 When("I click {string} button", async (buttonName) => {
-    const button = await $(`button=${buttonName}`);
+    const button = getButton(buttonName);
     await button.click();
 });
 
 When("I click {string} button if it appears", async(buttonName) => {
-    const button = await $(`button=${buttonName}`);
+    const button = await getButton(buttonName);
     if (await button.isDisplayed()) {
         await button.click();
     }
@@ -22,12 +23,12 @@ Then("{string} page should open", async (page) => {
 });
 
 Then("The cart should contain {int} item", async (amount) => {
-    const items = await $$('.row-body > .item-cells-wrap:not(.empty-cells) > .item-cell:not(.item-removed)');
+    const items = await getAllItemsFromCart();
     await expect(items).toBeElementsArrayOfSize(amount);
 });
 
 Then("Item should have quantity {int}", async (quantity) => {
-    const itemQty = await $('.item-container .item-qty .form-text');
+    const itemQty = await getItemQty();
     await expect(itemQty).toHaveValue(`${quantity}`);
 })
 
@@ -40,23 +41,12 @@ Given("I am on the {string} page", async (page) => {
 });
 
 When("I change quantity of item for {int}", async (quantity) => {
-    const itemQty = await $('.item-container .item-qty .form-text');
+    const itemQty = await getItemQty();
     await itemQty.setValue(["Backspace", quantity, "Enter"]);
 });
 
 Then("I should see a message saying: {string}", async (message) => {
-    const elem = await $('.message-information');
+    const elem = await getMessage();
     await expect(elem).toBeExisting();
     await expect(elem).toHaveTextContaining(message);
 });
-
-
-
-
-
-// When("I check the item quantity limit", async () => {
-//     const elem = await $('.item-qty-limit');
-//     const limitString = await elem.getText();
-//     const limitArray = await limitString.split(" ");
-//     const limit = limitArray[1];
-// })
