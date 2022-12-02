@@ -13,9 +13,9 @@ When("I click {string} button", async (buttonName) => {
 
 When("I click {string} button if it appears", async(buttonName) => {
     const button = await getButton(buttonName);
-    if (await button.isDisplayed()) {
-        await button.click();
-    }
+    try {
+        await button.click();       
+    } catch {}   
 });
 
 Then("{string} page should open", async (page) => {

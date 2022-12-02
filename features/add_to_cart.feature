@@ -2,6 +2,7 @@ Feature: Add item to cart
 
 Scenario: As a user, I can add an item to the cart
     Given I am on the home page
+    * I close banner if it appears 
     When I open "Today's Best Deals" tab
     And I click first item, which appears
     * I click "Add to cart" button 
@@ -32,4 +33,4 @@ Scenario Outline: As a user, I cannot change quantity of item for higher than li
     Examples:
         | product                                               | quantity | limit  |
         | netflix-30-00/p/N82E16832124001                       | 8        | 5      | 
-        | chipotle-50-00/p/N82E16832474008?Item=N82E16832474008 | 12       | 10     |
+        | chipotle-50-00/p/N82E16832474008?Item=N82E16832474008 | 25       | 15     |
