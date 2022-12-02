@@ -2,6 +2,7 @@ Feature: The Newegg main page
 
   Background: 
     Given I am on the home page
+    * I close banner if it appears
 
   Scenario: As a user, I can use the search bar
     When I enter "Windows" in the search bar 
