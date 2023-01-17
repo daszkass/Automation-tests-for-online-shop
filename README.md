@@ -1,10 +1,12 @@
+# This is hometask from QA Bootcamp, where I tried to test a few features from online shop https://www.newegg.com/
+
 ## How to test
 - Install node.js
 - Clone repository
 - Run: `yarn install` command to install all dependencies
 - Run: `yarn wdio` command to run tests
 
-## My scenario choice
+## My scenario choice (in add_to_cart.feature)
 First scenario choice seemed obvious to me, because if we want to check "Adding to cart feature" first of all we have to check if we are able to add anything. I decided to test also changing quantity inside the cart in two critical situations, because I think it might be prone to errors and easy to miss during manual tests. 
 
 ## Tests results
